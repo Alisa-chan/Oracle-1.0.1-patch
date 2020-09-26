@@ -1,0 +1,312 @@
+#include <stdio.h>
+#include <iostream>
+using namespace std;
+
+bool visok(int year)
+{
+	if((year % 400 == 0) || ((year % 100 != 0) && (year % 4 == 0)))
+	{
+		return 1;
+	}
+	else
+	{
+		return 0;
+	}
+}
+
+int main() 
+{
+	setlocale(LC_ALL, "Russian");
+	int dn,mn,yn,d,m,y,n,i,k;
+	scanf("%d%d%d",&dn,&mn,&yn);
+	scanf("%d%d%d",&d,&m,&y);
+	if (y!=yn)
+	{
+		if((y<yn) || ((y==yn) && (m<mn)) || ((y==yn) && (m==mn) && (d<dn)))
+		{
+			printf("Ошибка, пересмотрите введённые данные.");
+			return 0;
+		}
+		if(visok(yn))
+		{	
+			n=366;
+		}
+		else
+		{
+			n=365;
+		}
+		i=1;
+		while (i!=mn)
+		{
+			if((i%2!=0) || (i==8) || (i==10))
+			{
+				n-=31;
+			}
+			else
+			{
+				if(i!=2)
+				{
+					n-=30;
+				}
+				else
+				{
+					if(visok(yn))
+					{
+						n-=29;
+					}
+					else
+					{
+						n-=28;
+					}
+				}
+	    	}
+	    	i++;
+		}
+		n=n-dn+1;
+		for(i=(yn+1);i<y;i++)
+		{
+			if(visok(i))
+			{	
+				n+=366;
+			}
+			else
+			{
+				n+=365;
+			}
+		}
+		k=1;
+	}
+	else
+	{
+		k=mn;
+		n=-dn;
+	}
+	for(i=k;i<m;i++)
+	{
+		if((i%2!=0) || (i==8) || (i==10))
+		{
+			n+=31;
+		}
+		else
+		{
+			if(i!=2)
+			{
+				n+=30;
+			}
+			else
+			{
+				if(visok(y))
+				{
+					n+=29;
+				}
+				else
+				{
+					n+=28;
+				}
+			}
+	    }		
+	}
+	n+=d;
+	printf("Поздравляем! Вы прожили целых %d дней!\n",n);
+	if(visok(yn))
+	{
+		printf("Вы родились в високосный год.\n");
+	}
+	else
+	{
+		printf("Вы родились не в високосный год.\n");
+	}
+	switch(mn)
+	{
+		case 1:
+		{
+			if(dn>20)
+			{
+				printf("По знаку зодиака вы водолей.\n");
+			}
+			else
+				printf("По знаку зодиака вы козерог.\n");
+			break;
+		}
+		case 2:
+		{
+			if(dn>19)
+			{
+				printf("По знаку зодиака вы рыбы.\n");
+			}
+			else
+				printf("По знаку зодиака вы водолей.\n");
+			break;
+		}
+		case 3:
+		{
+			if(dn>20)
+			{
+				printf("По знаку зодиака вы овен.\n");
+			}
+			else
+				printf("По знаку зодиака вы рыбы.\n");
+			break;
+		}
+		case 4:
+		{
+			if(dn>20)
+			{
+				printf("По знаку зодиака вы телец.\n");
+			}
+			else
+				printf("По знаку зодиака вы овен.\n");
+			break;
+		}
+		case 5:
+		{
+			if(dn>21)
+			{
+				printf("По знаку зодиака вы близнецы.\n");
+			}
+			else
+				printf("По знаку зодиака вы телец.\n");
+			break;
+		}
+		case 6:
+		{
+			if(dn>21)
+			{
+				printf("По знаку зодиака вы рак.\n");
+			}
+			else
+				printf("По знаку зодиака вы близнецы.\n");
+			break;
+		}
+		case 7:
+		{
+			if(dn>22)
+			{
+				printf("По знаку зодиака вы лев.\n");
+			}
+			else
+				printf("По знаку зодиака вы рак.\n");
+			break;
+		}
+		case 8:
+		{
+			if(dn>23)
+			{
+				printf("По знаку зодиака вы дева.\n");
+			}
+			else
+				printf("По знаку зодиака вы лев.\n");
+			break;
+		}
+		case 9:
+		{
+			if(dn>23)
+			{
+				printf("По знаку зодиака вы весы.\n");
+			}
+			else
+				printf("По знаку зодиака вы дева.\n");
+			break;
+		}
+		case 10:
+		{
+			if(dn>23)
+			{
+				printf("По знаку зодиака вы скорпион.\n");
+			}
+			else
+				printf("По знаку зодиака вы весы.\n");
+			break;
+		}
+		case 11:
+		{
+			if(dn>22)
+			{
+				printf("По знаку зодиака вы стрелец.\n");
+			}
+			else
+				printf("По знаку зодиака вы скорпион.\n");
+			break;
+		}
+		case 12:
+		{
+			if(dn>22)
+			{
+				printf("По знаку зодиака вы козерог.\n");
+			}
+			else
+				printf("По знаку зодиака вы стрелец.\n");
+			break;
+		}																		
+		default:
+		{
+		}	
+	}
+	switch(yn%12)
+	{
+		case 0:
+		{
+			printf("По китайскому календарю вы обезьяна.");
+			break;
+		}
+		case 1:
+		{
+			printf("По китайскому календарю вы петух.");
+			break;
+		}
+		case 2:
+		{
+			printf("По китайскому календарю вы собака.");
+			break;
+		}
+		case 3:
+		{
+			printf("По китайскому календарю вы свинья.");
+			break;
+		}
+		case 4:
+		{
+			printf("По китайскому календарю вы крыса.");
+			break;
+		}
+		case 5:
+		{
+			printf("По китайскому календарю вы бык.");
+			break;
+		}
+		case 6:
+		{
+			printf("По китайскому календарю вы тигр.");
+			break;
+		}
+		case 7:
+		{
+			printf("По китайскому календарю вы кролик.");
+			break;
+		}
+		case 8:
+		{
+			printf("По китайскому календарю вы дракон.");
+			break;
+		}
+		case 9:
+		{
+			printf("По китайскому календарю вы змея.");
+			break;
+		}
+		case 10:
+		{
+			printf("По китайскому календарю вы лошадь.");
+			break;
+		}
+		case 11:
+		{
+			printf("По китайскому календарю вы овца.");
+			break;
+		}
+		default:
+		{
+		}	
+	}	
+	return 0;
+}
