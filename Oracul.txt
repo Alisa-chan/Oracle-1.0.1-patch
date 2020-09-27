@@ -1,4 +1,4 @@
-#include <stdio.h>
+﻿#include <stdio.h>
 #include <iostream>
 using namespace std;
 
@@ -22,7 +22,7 @@ int main()
 	scanf("%d%d%d",&d,&m,&y);
 	if (y!=yn)
 	{
-		if((y<yn) || ((y==yn) && (m<mn)) || ((y==yn) && (m==mn) && (d<dn)))
+		if((y<yn) || ((y==yn) && (m<mn)) || ((y==yn) && (m==mn) && (d<dn)) || (m>12) || (mn>12) || (d>31) || (dn>31))
 		{
 			printf("Ошибка, пересмотрите введённые данные.");
 			return 0;
